@@ -52,8 +52,10 @@ kotlin {
         browser()
     }
 
-
     sourceSets {
+        val desktopMain by getting
+        val wasmJsMain by getting
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -73,6 +75,15 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+        }
+
+        val nonIosMain by creating {
+            dependsOn(commonMain.get())
+            macosMain.get().dependsOn(this)
+            androidMain.get().dependsOn(this)
+            desktopMain.dependsOn(this)
+            jsMain.get().dependsOn(this)
+            wasmJsMain.dependsOn(this)
         }
     }
 
