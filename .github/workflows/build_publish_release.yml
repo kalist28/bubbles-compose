@@ -36,7 +36,7 @@ jobs:
           NYX_VERBOSITY: 'WARN'
         with:
           configurationFile: 'build-configuration/.nyx.json'
-          command: 'release'
+          command: 'publish'
           changelogPath: CHANGELOG.md
 
       - name: "🟢 Release version is ${{ steps.nyx.outputs.version }}"
