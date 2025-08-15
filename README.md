@@ -9,6 +9,10 @@
 
 # [Bubbles UI Library](https://www.figma.com/community/file/1083709601534538452/bubbles-ui-library-v1-0-4)
 
+
+<img width="1150" height="688" alt="image" src="https://github.com/user-attachments/assets/b85bbe43-3247-46eb-99cd-15925fee6743" />
+
+
 Bubbles forCompose is a Kotlin Multiplatform library for the Compose Multiplatform UI framework. It provides various UI components.
 
 # Usage
