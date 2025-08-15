@@ -3,7 +3,7 @@
   "preset": "extended",
   "scheme": "SEMVER",
   "verbosity": "INFO",
-  "releaseLenient": "true",
+  "releaseLenient": true,
 
   "tagVersionPattern": "v{{version}}",
 
