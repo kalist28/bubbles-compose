@@ -4,14 +4,36 @@
   "scheme": "SEMVER",
   "verbosity": "INFO",
   "releaseLenient": true,
+
+  "tagVersionPattern": "v{{version}}",
+
   "commitMessageConventions": {
-    "enabled": ["conventionalCommitsForMerge"]
+    "enabled": [
+      "conventionalCommits",
+      "conventionalCommitsForMerge"
+    ]
   },
+
   "releaseTypes": {
-    "enabled": ["release"],
+    "enabled": ["stable", "beta", "rc"],
     "items": {
-      "release": {
-        "identifiers": []
+      "stable": {
+        "matchBranches": "^(main|master)$",
+        "gitTag": true
+      },
+      "beta": {
+        "matchBranches": "^develop$",
+        "gitTag": true,
+        "identifiers": [
+          { "position": "PRE_RELEASE", "qualifier": "beta" }
+        ]
+      },
+      "rc": {
+        "matchBranches": "^release\\/.*$",
+        "gitTag": true,
+        "identifiers": [
+          { "position": "PRE_RELEASE", "qualifier": "rc" }
+        ]
       }
     }
   }

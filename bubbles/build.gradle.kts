@@ -60,7 +60,6 @@ kotlin {
     }
 
     sourceSets {
-        val desktopMain by getting
         val wasmJsMain by getting
 
         androidMain.dependencies {
@@ -88,7 +87,7 @@ kotlin {
             dependsOn(commonMain.get())
             macosMain.get().dependsOn(this)
             androidMain.get().dependsOn(this)
-            desktopMain.dependsOn(this)
+            jvmMain.get().dependsOn(this)
             jsMain.get().dependsOn(this)
             wasmJsMain.dependsOn(this)
         }
