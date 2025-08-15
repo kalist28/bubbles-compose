@@ -19,12 +19,12 @@ object BubblesTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalTypography.current
-/*
-    *//**
+
+    /**
      * Retrieves the current [Shapes] at the call site's position in the hierarchy.
-     *//*
+     */
     val shapes: Shapes
         @Composable
         @ReadOnlyComposable
-        get() = LocalShapes.current*/
+        get() = LocalShapes.current
 }
