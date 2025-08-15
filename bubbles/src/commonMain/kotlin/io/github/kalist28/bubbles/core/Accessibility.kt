@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import io.github.kalist28.bubbles.core.theme.BubblesColors
 import io.github.kalist28.bubbles.core.theme.White
+import io.github.kalist28.bubbles.core.theme.isDark
 
 /**
  * This object provides access to native accessibility preferences
