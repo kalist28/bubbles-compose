@@ -28,7 +28,7 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 
 | Platform             | Android | iOS | desktop | web |
 |----------------------|:-------:|:---:|:-------:|:---:|
-| Text                 |   🕒    | 🕒  |   🕒    | 🕒  |
+| Text                 |   ✅    | ✅  |   ✅    | ✅  |
 | Text Field           |   🕒    | 🕒  |   🕒    | 🕒  |
 | Toggle Switch        |   🕒    | 🕒  |   🕒    | 🕒  |
 | Bottom Sheet         |   🕒    | 🕒  |   🕒    | 🕒  |
