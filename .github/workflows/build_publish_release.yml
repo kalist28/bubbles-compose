@@ -40,23 +40,26 @@ jobs:
           changelogPath: CHANGELOG.md
 
       - name: "🟢 Release version is ${{ steps.nyx.outputs.version }}"
+        if: ${{ steps.nyx.outputs.version != '' }}
         run: echo The release version is ${{ steps.nyx.outputs.version }}
 
       - name: "📖 Read Changelog for Release Notes"
+        if: ${{ steps.nyx.outputs.version != '' }}
         id: changelog
         run: |
           awk '/^## / {found++} found == 1 {print}' CHANGELOG.md > latest-changelog.md
 
       - name: "🌊 Create GitHub Release"
+        if: ${{ steps.nyx.outputs.version != '' }}
         uses: ncipollo/release-action@v1.14.0
         with:
           tag: ${{ steps.nyx.outputs.version }}
           name: Release ${{ steps.nyx.outputs.version }}
           bodyFile: latest-changelog.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: ${{ contains(steps.nyx.outputs.version, '-beta') || contains(steps.nyx.outputs.version, '-rc') }}
 
   build-and-publish:
+    if: ${{ needs.infer-release.outputs.version != '' }}
     runs-on: macos-latest
     needs: infer-release
     environment: Maven
