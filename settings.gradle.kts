@@ -1,4 +1,4 @@
-rootProject.name = "Bubblescompose"
+rootProject.name = "bubbles-compose"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -33,3 +33,4 @@ plugins {
 }
 
 include(":composeApp")
+include(":bubbles")
