@@ -1,4 +1,8 @@
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinMultiplatform
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,6 +12,9 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+
+    alias(libs.plugins.vanniktech.maven.publish)
+    signing
 }
 
 kotlin {
@@ -33,7 +40,7 @@ kotlin {
         }
     }
 
-    jvm("desktop") {
+    jvm {
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {
@@ -86,5 +93,59 @@ kotlin {
             wasmJsMain.dependsOn(this)
         }
     }
+}
 
+val publishProperties = Properties().apply {
+    load(file("publish.properties").inputStream())
+}
+
+val isGithubActions = System.getenv("GITHUB_ACTIONS") == "true"
+
+version = System.getenv("VERSION") ?: run {
+    if (isGithubActions) error("VERSION must be set for GitHub Actions")
+    else "0.0.1"
+}
+
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+
+    coordinates(
+        groupId = project.group as String,
+        artifactId = project.name,
+        version = project.version as String
+    )
+
+    configure(
+        KotlinMultiplatform(
+            javadocJar = JavadocJar.Empty(),
+            sourcesJar = true,
+        )
+    )
+
+    if (isGithubActions) signAllPublications()
+
+    pom {
+        name.set(project.name)
+        description.set(publishProperties.getProperty("description"))
+        url.set("https://github.com/kalist28/bubbles-compose")
+
+        licenses {
+            license {
+                name.set("Apache-2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0")
+            }
+        }
+        developers {
+            developer {
+                id.set("kalist28")
+                name.set("Dmitry Kalistratov")
+                email.set("kalistratov.d.m@gmail.com")
+            }
+        }
+        scm {
+            connection.set("scm:git:https://github.com/kalist28/bubbles-compose.git")
+            developerConnection.set("scm:git:ssh://github.com/kalist28/bubbles-compose.git")
+            url.set("https://github.com/kalist28/bubbles-compose")
+        }
+    }
 }
