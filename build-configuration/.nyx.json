@@ -19,18 +19,18 @@
     "items": {
       "stable": {
         "matchBranches": "^(main|master)$",
-        "gitTag": true
+        "gitTag": "true"
       },
       "beta": {
         "matchBranches": "^develop$",
-        "gitTag": true,
+        "gitTag": "true",
         "identifiers": [
           { "position": "PRE_RELEASE", "qualifier": "beta" }
         ]
       },
       "rc": {
         "matchBranches": "^release\\/.*$",
-        "gitTag": true,
+        "gitTag": "true",
         "identifiers": [
           { "position": "PRE_RELEASE", "qualifier": "rc" }
         ]
