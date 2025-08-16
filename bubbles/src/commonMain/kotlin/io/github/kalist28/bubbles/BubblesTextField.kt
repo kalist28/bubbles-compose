@@ -1,32 +1,46 @@
 package io.github.kalist28.bubbles
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.LocalTextSelectionColors
 import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.takeOrElse
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.composeunstyled.TextField
-import com.composeunstyled.TextInput
+import io.github.kalist28.bubbles.core.LocalContentColor
 import io.github.kalist28.bubbles.core.LocalTextStyle
-import io.github.kalist28.bubbles.core.ProvideContentColor
-import io.github.kalist28.bubbles.core.nullableWrapper
 import io.github.kalist28.bubbles.core.theme.BubblesColors
 import io.github.kalist28.bubbles.core.theme.BubblesTheme
 import io.github.kalist28.bubbles.core.theme.LocalShapes
@@ -38,77 +52,70 @@ fun BubblesTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    editable: Boolean = true,
-    isError: Boolean = false,
-    colors: BubblesTextFieldColors = BubblesTextFieldDefaults.colors(),
-    cursorBrush: Brush = SolidColor(colors.cursorColor(isError).value),
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
     textStyle: TextStyle = LocalTextStyle.current,
-    singleLine: Boolean = false,
-    minLines: Int = 1,
-    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    placeholder: @Composable (() -> Unit)? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    isError: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    singleLine: Boolean = false,
+    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
+    minLines: Int = 1,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    contentPadding: PaddingValues = BubblesTextFieldDefaults.padding,
-    placeholder: (@Composable () -> Unit)? = null,
-    leading: (@Composable () -> Unit)? = null,
-    trailing: (@Composable () -> Unit)? = null,
-) = TextField(
-    value = value,
-    onValueChange = onValueChange,
-    modifier = modifier,
-    editable = editable,
-    cursorBrush = cursorBrush,
-    textStyle = textStyle,
-    singleLine = singleLine,
-    minLines = minLines,
-    maxLines = maxLines,
-    keyboardActions = keyboardActions,
-    keyboardOptions = keyboardOptions,
-    visualTransformation = visualTransformation,
-    interactionSource = interactionSource,
-    textColor = colors.textColor(
-        enabled = editable,
-        isError = isError,
-        interactionSource = interactionSource
-    ).value,
+    contentAlignment: Alignment.Vertical = Alignment.CenterVertically,
+    colors: BubblesTextFieldColors = BubblesTextFieldDefaults.colors(),
 ) {
-    TextInput(
-        placeholder = nullableWrapper(placeholder) { placeholder ->
-            val style = LocalTextStyle.current.copy(
-                color = colors.placeholderColor(
-                    enabled = editable,
+    val textColor = textStyle.color.takeOrElse {
+        colors.textColor(enabled, isError, interactionSource).value
+    }
+
+    val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
+
+    CompositionLocalProvider(
+        LocalTextSelectionColors provides colors.selectionColors,
+    ) {
+        var layoutResult: TextLayoutResult? by remember { mutableStateOf(null) }
+
+        BasicTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = Modifier.defaultMinSize(
+                minWidth = BubblesTextFieldDefaults.minWidth,
+                minHeight = BubblesTextFieldDefaults.minHeight,
+            ),
+            enabled = enabled,
+            readOnly = readOnly,
+            textStyle = mergedTextStyle,
+            cursorBrush = SolidColor(colors.cursorColor(isError).value),
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            interactionSource = interactionSource,
+            singleLine = singleLine,
+            maxLines = maxLines,
+            minLines = minLines,
+            onTextLayout = { result -> layoutResult = result },
+            decorationBox = { box ->
+                BubblesTextFieldDefaults.DecorationBox(
+                    modifier = modifier,
+                    valueIsEmpty = value.isEmpty(),
+                    innerTextField = box,
+                    enabled = enabled,
+                    interactionSource = interactionSource,
+                    contentAlignment = contentAlignment,
                     isError = isError,
-                    interactionSource = interactionSource
-                ).value
-            )
-            ProvideTextStyle(style, placeholder)
-        },
-        leading = nullableWrapper(leading) { leading ->
-            val color = colors.leadingIconColor(
-                enabled = editable,
-                isError = isError,
-                interactionSource = interactionSource
-            ).value
-            ProvideContentColor(color, leading)
-        },
-        trailing = nullableWrapper(trailing) { trailing ->
-            val color = colors.trailingIconColor(
-                enabled = editable,
-                isError = isError,
-                interactionSource = interactionSource
-            ).value
-            ProvideContentColor(color, trailing)
-        },
-        shape = LocalShapes.current.medium,
-        backgroundColor = colors.containerColor(
-            enabled = editable,
-            isError = isError,
-            interactionSource = interactionSource
-        ).value,
-        contentPadding = contentPadding
-    )
+                    placeholder = placeholder,
+                    leadingIcon = leadingIcon,
+                    textLayoutResult = layoutResult,
+                    trailingIcon = trailingIcon,
+                )
+            },
+        )
+    }
 }
 
 @Composable
@@ -116,48 +123,307 @@ fun BubblesTextField(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier,
-    editable: Boolean = true,
-    isError: Boolean = false,
-    colors: BubblesTextFieldColors = BubblesTextFieldDefaults.colors(),
-    cursorBrush: Brush = SolidColor(colors.cursorColor(isError).value),
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
     textStyle: TextStyle = LocalTextStyle.current,
-    singleLine: Boolean = false,
-    minLines: Int = 1,
-    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    placeholder: @Composable (() -> Unit)? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    isError: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    singleLine: Boolean = false,
+    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
+    minLines: Int = 1,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    contentPadding: PaddingValues = BubblesTextFieldDefaults.padding,
-    placeholder: (@Composable () -> Unit)? = null,
-    leading: (@Composable () -> Unit)? = null,
-    trailing: (@Composable () -> Unit)? = null,
-) = BubblesTextField(
-    value = value.text,
-    onValueChange = { onValueChange(value.copy(text = it)) },
-    textStyle = textStyle,
-    modifier = modifier,
-    editable = editable,
-    isError = isError,
-    colors = colors,
-    cursorBrush = cursorBrush,
-    singleLine = singleLine,
-    minLines = minLines,
-    maxLines = maxLines,
-    keyboardActions = keyboardActions,
-    keyboardOptions = keyboardOptions,
-    visualTransformation = visualTransformation,
-    interactionSource = interactionSource,
-    contentPadding = contentPadding,
-    placeholder = placeholder,
-    leading = leading,
-    trailing = trailing
-)
+    contentAlignment: Alignment.Vertical = Alignment.CenterVertically,
+    colors: BubblesTextFieldColors = BubblesTextFieldDefaults.colors(),
+) {
+    val textColor = textStyle.color.takeOrElse {
+        colors.textColor(enabled, isError, interactionSource).value
+    }
+
+    val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
+
+    CompositionLocalProvider(
+        LocalTextSelectionColors provides colors.selectionColors,
+    ) {
+        var layoutResult: TextLayoutResult? by remember { mutableStateOf(null) }
+
+        BasicTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = Modifier.defaultMinSize(
+                minWidth = BubblesTextFieldDefaults.minWidth,
+                minHeight = BubblesTextFieldDefaults.minHeight,
+            ),
+            enabled = enabled,
+            readOnly = readOnly,
+            textStyle = mergedTextStyle,
+            cursorBrush = SolidColor(colors.cursorColor(isError).value),
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            interactionSource = interactionSource,
+            singleLine = singleLine,
+            maxLines = maxLines,
+            minLines = minLines,
+            onTextLayout = { result -> layoutResult = result },
+            decorationBox = { box ->
+                BubblesTextFieldDefaults.DecorationBox(
+                    modifier = modifier,
+                    valueIsEmpty = value.text.isEmpty(),
+                    innerTextField = box,
+                    enabled = enabled,
+                    interactionSource = interactionSource,
+                    contentAlignment = contentAlignment,
+                    isError = isError,
+                    placeholder = placeholder,
+                    leadingIcon = leadingIcon,
+                    textLayoutResult = layoutResult,
+                    trailingIcon = trailingIcon,
+                )
+            },
+        )
+    }
+}
+
+@Composable
+fun BubblesBorderedTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    textStyle: TextStyle = LocalTextStyle.current,
+    placeholder: @Composable (() -> Unit)? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    shape: Shape = BubblesTextFieldDefaults.shape,
+    strokeWidth: Dp = 0.dp,
+    contentPadding: PaddingValues = BubblesTextFieldDefaults.contentPadding,
+    isError: Boolean = false,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    singleLine: Boolean = false,
+    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
+    minLines: Int = 1,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    contentAlignment: Alignment.Vertical = Alignment.CenterVertically,
+    colors: BubblesTextFieldColors = BubblesTextFieldDefaults.colors(),
+) {
+    Border(
+        modifier = modifier,
+        strokeWidth = strokeWidth,
+        enabled = enabled,
+        isError = isError,
+        interactionSource = interactionSource,
+        colors = colors,
+        shape = shape,
+        paddingValues = contentPadding
+    ) {
+        BubblesTextField(
+            value = value,
+            onValueChange = onValueChange,
+            enabled = enabled,
+            readOnly = readOnly,
+            textStyle = textStyle,
+            placeholder = placeholder,
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
+            isError = isError,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = singleLine,
+            maxLines = maxLines,
+            minLines = minLines,
+            interactionSource = interactionSource,
+            contentAlignment = contentAlignment,
+            colors = colors,
+        )
+    }
+}
+
+@Composable
+fun BubblesBorderedTextField(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    textStyle: TextStyle = LocalTextStyle.current,
+    placeholder: @Composable (() -> Unit)? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    shape: Shape = BubblesTextFieldDefaults.shape,
+    strokeWidth: Dp = 0.dp,
+    contentPadding: PaddingValues = BubblesTextFieldDefaults.contentPadding,
+    isError: Boolean = false,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    singleLine: Boolean = false,
+    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
+    minLines: Int = 1,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    contentAlignment: Alignment.Vertical = Alignment.CenterVertically,
+    colors: BubblesTextFieldColors = BubblesTextFieldDefaults.colors(),
+) {
+    Border(
+        modifier = modifier,
+        strokeWidth = strokeWidth,
+        enabled = enabled,
+        isError = isError,
+        interactionSource = interactionSource,
+        colors = colors,
+        shape = shape,
+        paddingValues = contentPadding
+    ) {
+        BubblesTextField(
+            value = value,
+            onValueChange = onValueChange,
+            enabled = enabled,
+            readOnly = readOnly,
+            textStyle = textStyle,
+            placeholder = placeholder,
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
+            isError = isError,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = singleLine,
+            maxLines = maxLines,
+            minLines = minLines,
+            interactionSource = interactionSource,
+            contentAlignment = contentAlignment,
+            colors = colors,
+        )
+    }
+}
+
+@Composable
+private fun Border(
+    modifier: Modifier,
+    strokeWidth: Dp,
+    enabled: Boolean,
+    isError: Boolean,
+    interactionSource: MutableInteractionSource,
+    colors: BubblesTextFieldColors,
+    shape: Shape,
+    paddingValues: PaddingValues,
+    textField: @Composable () -> Unit,
+) {
+    Box(
+        modifier
+            .clip(shape)
+            .then(
+                if (strokeWidth > 0.dp) Modifier.border(
+                    width = strokeWidth,
+                    color = colors.indicatorColor(enabled, isError, interactionSource).value,
+                    shape = shape
+                ) else Modifier
+            )
+            .background(colors.containerColor(enabled, isError, interactionSource).value)
+            .padding(paddingValues),
+    ) {
+        textField()
+    }
+}
 
 @Immutable
 object BubblesTextFieldDefaults {
 
-    internal val padding = PaddingValues(16.dp)
+    internal val contentPadding = PaddingValues(16.dp)
+
+    /**
+     * The default padding applied to an leading and trailing icon.
+     */
+    internal val iconsPadding = PaddingValues(0.dp)
+
+    /**
+     * The default min width applied to an [BubblesTextField].
+     * Note that you can override it by applying Modifier.heightIn directly on a text field.
+     */
+    val minHeight = 26.dp
+
+    /**
+     * The default min width applied to an [BubblesTextField].
+     * Note that you can override it by applying Modifier.widthIn directly on a text field.
+     */
+    val minWidth = 280.dp
+
+    val shape: Shape
+        @Composable
+        get() = LocalShapes.current.medium
+
+    @Composable
+    fun DecorationBox(
+        valueIsEmpty: Boolean,
+        innerTextField: @Composable () -> Unit,
+        enabled: Boolean,
+        contentAlignment: Alignment.Vertical,
+        interactionSource: InteractionSource,
+        textLayoutResult: TextLayoutResult?,
+        isError: Boolean = false,
+        modifier: Modifier = Modifier,
+        placeholder: @Composable (() -> Unit)? = null,
+        leadingIcon: @Composable (() -> Unit)? = null,
+        trailingIcon: @Composable (() -> Unit)? = null,
+        colors: BubblesTextFieldColors = colors(),
+    ) {
+        val alignment = contentAlignment
+            .takeIf { textLayoutResult != null && textLayoutResult.lineCount > 1 }
+            ?: Alignment.CenterVertically
+
+        Row(
+            modifier = modifier,
+            verticalAlignment = alignment,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            if (leadingIcon != null) Box(Modifier.padding(iconsPadding)) {
+                CompositionLocalProvider(
+                    LocalContentColor provides colors
+                        .leadingIconColor(
+                            enabled = enabled,
+                            isError = isError,
+                            interactionSource = interactionSource,
+                        ).value,
+                    content = leadingIcon
+                )
+            }
+
+            Box(Modifier.weight(1f)) {
+                innerTextField()
+                if (valueIsEmpty && placeholder != null) {
+                    CompositionLocalProvider(
+                        LocalContentColor provides colors
+                            .placeholderColor(
+                                enabled = enabled,
+                                isError = isError,
+                                interactionSource = interactionSource,
+                            ).value,
+                        content = placeholder
+                    )
+                }
+            }
+
+            if (trailingIcon != null) Box(Modifier.padding(iconsPadding)) {
+                CompositionLocalProvider(
+                    LocalContentColor provides colors
+                        .trailingIconColor(
+                            enabled = enabled,
+                            isError = isError,
+                            interactionSource = interactionSource,
+                        ).value,
+                    content = trailingIcon
+                )
+            }
+        }
+    }
 
     @Composable
     fun colors(

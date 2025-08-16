@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.composeunstyled.Icon
+import io.github.kalist28.bubbles.BubblesBorderedTextField
 import io.github.kalist28.bubbles.BubblesButton
 import io.github.kalist28.bubbles.BubblesButtonDefaults
 import io.github.kalist28.bubbles.BubblesButtonSize
@@ -54,28 +55,37 @@ fun App() {
                 placeholder = { BubblesText("Placeholder") },
             )
 
-            BubblesTextField(
+            BubblesBorderedTextField(
                 value = text1,
                 onValueChange = { text1 = it },
-                colors = BubblesTextFieldDefaults.colors(),
-                editable = false,
+                colors = BubblesTextFieldDefaults.colors(
+                    focusedContainerColor = BubblesColors.systemPaleBlue
+                ),
                 placeholder = { BubblesText("Placeholder") },
             )
 
-            BubblesTextField(
+            BubblesBorderedTextField(
+                value = text1,
+                onValueChange = { text1 = it },
+                colors = BubblesTextFieldDefaults.colors(),
+                enabled = false,
+                placeholder = { BubblesText("Placeholder") },
+            )
+
+            BubblesBorderedTextField(
                 value = text1,
                 onValueChange = { text1 = it },
                 isError = true,
                 colors = BubblesTextFieldDefaults.colors(),
                 placeholder = { BubblesText("Placeholder") },
-                leading = {
+                leadingIcon = {
                     Icon(
                         imageVector = ArrowUpRightCircle,
                         contentDescription = "",
                         tint = LocalContentColor.current
                     )
                 },
-                trailing = {
+                trailingIcon = {
                     Icon(
                         imageVector = ArrowUpRightCircle,
                         contentDescription = "",
