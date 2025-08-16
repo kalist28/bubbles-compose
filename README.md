@@ -19,7 +19,7 @@ Bubbles forCompose is a Kotlin Multiplatform library for the Compose Multiplatfo
 
 This package is published to Maven Central Repository: [bubbles on Maven Central](https://central.sonatype.com/artifact/io.github.kalist28/bubbles)
 
-Depend on the [latest version](https://github.com/kalist28/compose-cupertino/releases) by declaring this in libs.versions.toml:
+Depend on the [latest version](https://github.com/kalist28/bubbles-compose/releases) by declaring this in libs.versions.toml:
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.kalist28/bubbles)](https://maven-badges.herokuapp.com/maven-central/io.github.kalist28/bubbles)
 ```
