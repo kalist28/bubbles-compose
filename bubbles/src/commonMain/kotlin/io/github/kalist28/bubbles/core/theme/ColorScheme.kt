@@ -182,7 +182,7 @@ fun darkColorScheme(
 internal object ColorSchemeTokens {
     val lightAccent: Color = BubblesColors.systemBlue(false)
     val lightLabel: Color = Color.Black
-    val lightSecondaryLabel: Color = Color(0x993c3c43) orContrast Color(0xcc3c3c43)
+    val lightSecondaryLabel: Color = Color(0xFF96A6C2) orContrast Color(0xcc3c3c43)
     val lightTertiaryLabel: Color = Color(0x4c3c3c43) orContrast Color(0xb23c3c43)
 
     val lightQuaternaryLabel: Color = Color(0x2d3c3c43) orContrast Color(0x8c3c3c43)
@@ -208,7 +208,7 @@ internal object ColorSchemeTokens {
 
     val darkAccent: Color = BubblesColors.systemBlue(true)
     val darkLabel: Color = Color.White
-    val darkSecondaryLabel: Color = Color(0x99ebebf5) orContrast Color(0xb2ebebf5)
+    val darkSecondaryLabel: Color = Color(0x9996A6C2) orContrast Color(0xb2ebebf5)
     val darkTertiaryLabel: Color = Color(0x4cebebf5) orContrast Color(0x8cebebf5)
     val darkQuaternaryLabel: Color = Color(0x28ebebf5) orContrast Color(0x66ebebf5)
     val darkSystemFill: Color = Color(0x5b787880) orContrast Color(0x70787880)

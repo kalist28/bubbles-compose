@@ -1,6 +1,7 @@
 package io.github.kalist28.bubbles.core
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
@@ -18,6 +19,15 @@ val LocalContentColor: ProvidableCompositionLocal<Color>
     @Composable
     @ReadOnlyComposable
     get() = LocalContentColorProvider.current
+
+@Composable
+fun ProvideContentColor(
+    color: Color,
+    content: @Composable () -> Unit,
+) = CompositionLocalProvider(
+    LocalContentColor provides color,
+    content = content
+)
 
 val LocalContentColorProvider =
     staticCompositionLocalOf {
