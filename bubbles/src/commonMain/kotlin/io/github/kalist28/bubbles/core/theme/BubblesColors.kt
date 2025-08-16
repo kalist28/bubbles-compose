@@ -53,6 +53,11 @@ val BubblesColors.systemBlue: Color
     @ReadOnlyComposable
     get() = systemBlue(isDark)
 
+val BubblesColors.systemPaleBlue: Color
+    @Composable
+    @ReadOnlyComposable
+    get() = systemPaleBlue(isDark)
+
 val BubblesColors.systemMint: Color
     @Composable
     @ReadOnlyComposable
@@ -249,6 +254,23 @@ fun BubblesColors.systemBlue(
         Color(64, 156, 255)
     } else {
         Color(0, 64, 221)
+    }
+}
+
+fun BubblesColors.systemPaleBlue(
+    dark: Boolean,
+    highContrast: Boolean = Accessibility.isHighContrastEnabled,
+) = if (!highContrast) {
+    if (dark) {
+        Color(33, 36, 42)
+    } else {
+        Color(234, 237, 243)
+    }
+} else {
+    if (dark) {
+        Color(11, 14, 17)
+    } else {
+        Color(245, 247, 250)
     }
 }
 
