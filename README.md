@@ -43,7 +43,7 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 | Dialog               |   🕒    | 🕒  |   🕒    | 🕒  |
 | Disclosure           |   🕒    | 🕒  |   🕒    | 🕒  |
 | Dropdown Menu        |   🕒    | 🕒  |   🕒    | 🕒  |
-| Icon                 |   🕒    | 🕒  |   🕒    | 🕒  |
+| Icon                 |   ✅    | ✅  |   ✅    | ✅  |
 | Modal                |   🕒    | 🕒  |   🕒    | 🕒  |
 | Progress Indicator   |   🕒    | 🕒  |   🕒    | 🕒  |
 | Radio Group          |   🕒    | 🕒  |   🕒    | 🕒  |
