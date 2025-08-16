@@ -178,7 +178,7 @@ object BubblesTextFieldDefaults {
         unfocusedBorderColor: Color = focusedBorderColor,
         disabledBorderColor: Color = focusedBorderColor,
         errorBorderColor: Color = errorTextColor,
-        focusedLeadingIconColor: Color = BubblesTheme.colorScheme.secondaryLabel,
+        focusedLeadingIconColor: Color = focusedTextColor,
         unfocusedLeadingIconColor: Color = focusedLeadingIconColor,
         disabledLeadingIconColor: Color = focusedLeadingIconColor,
         errorLeadingIconColor: Color = focusedLeadingIconColor,
