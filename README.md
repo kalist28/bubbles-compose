@@ -32,18 +32,18 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 
 | Platform             | Android | iOS | desktop | web |
 |----------------------|:-------:|:---:|:-------:|:---:|
-| Text                 |   ✅    | ✅  |   ✅    | ✅  |
-| Text Field           |   ✅    | ✅  |   ✅    | ✅  |
-| Toggle Switch        |   🕒    | 🕒  |   🕒    | 🕒  |
+| Text                 |    ✅    |  ✅  |    ✅    |  ✅  |
+| Text Field           |    ✅    |  ✅  |    ✅    |  ✅  |
+| Toggle Switch        |    ✅    |  ✅  |    ✅    |  ✅  |
 | Bottom Sheet         |   🕒    | 🕒  |   🕒    | 🕒  |
 | Bottom Sheet (Modal) |   🕒    | 🕒  |   🕒    | 🕒  |
-| Button               |   ✅    | ✅  |   ✅    | ✅  |
-| Checkbox             |   ✅    | ✅  |   ✅    | ✅  |
-| Checkbox (TriState)  |   ✅    | ✅  |   ✅    | ✅  |
+| Button               |    ✅    |  ✅  |    ✅    |  ✅  |
+| Checkbox             |    ✅    |  ✅  |    ✅    |  ✅  |
+| Checkbox (TriState)  |    ✅    |  ✅  |    ✅    |  ✅  |
 | Dialog               |   🕒    | 🕒  |   🕒    | 🕒  |
 | Disclosure           |   🕒    | 🕒  |   🕒    | 🕒  |
 | Dropdown Menu        |   🕒    | 🕒  |   🕒    | 🕒  |
-| Icon                 |   ✅    | ✅  |   ✅    | ✅  |
+| Icon                 |    ✅    |  ✅  |    ✅    |  ✅  |
 | Modal                |   🕒    | 🕒  |   🕒    | 🕒  |
 | Progress Indicator   |   🕒    | 🕒  |   🕒    | 🕒  |
 | Radio Group          |   🕒    | 🕒  |   🕒    | 🕒  |
