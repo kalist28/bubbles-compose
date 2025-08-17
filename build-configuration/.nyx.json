@@ -15,7 +15,7 @@
   },
 
   "releaseTypes": {
-    "enabled": ["stable", "beta", "rc"],
+    "enabled": ["stable", "beta", "rc", "hotfix"],
     "items": {
       "stable": {
         "matchBranches": "^(main|master)$",
@@ -34,6 +34,10 @@
         "identifiers": [
           { "position": "PRE_RELEASE", "qualifier": "rc" }
         ]
+      },
+      "hotfix": {
+        "matchBranches": "^hotfix\\/.*$",
+        "gitTag": "true"
       }
     }
   }

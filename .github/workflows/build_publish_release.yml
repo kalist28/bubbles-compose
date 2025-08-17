@@ -3,9 +3,10 @@ name: Build, Publish, and Release
 on:
   push:
     branches:
-      - main        # stable
-      - develop     # beta
+      - main         # stable
+      - develop      # beta
       - 'release/**' # rc
+      - 'hotfix/**'  # hotfix
   workflow_dispatch:
 
 permissions:
