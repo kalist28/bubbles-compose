@@ -15,16 +15,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
 import com.composeunstyled.Icon
 import io.github.kalist28.bubbles.BubblesBorderedTextField
 import io.github.kalist28.bubbles.BubblesButton
 import io.github.kalist28.bubbles.BubblesButtonDefaults
 import io.github.kalist28.bubbles.BubblesButtonSize
+import io.github.kalist28.bubbles.BubblesCheckBox
 import io.github.kalist28.bubbles.BubblesText
 import io.github.kalist28.bubbles.BubblesTextField
 import io.github.kalist28.bubbles.BubblesTextFieldDefaults
 import io.github.kalist28.bubbles.BubblesTheme
+import io.github.kalist28.bubbles.BubblesTriStateCheckBox
 import io.github.kalist28.bubbles.core.LocalContentColor
 import io.github.kalist28.bubbles.core.theme.BubblesColors
 import io.github.kalist28.bubbles.core.theme.BubblesTheme
@@ -43,6 +46,38 @@ fun App() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            Row {
+                var state by remember { mutableStateOf(ToggleableState.On) }
+                BubblesTriStateCheckBox(
+                    state = state,
+                    onClick = {
+                        state = ToggleableState
+                            .entries[(state.ordinal + 1) % ToggleableState.entries.size]
+                    }
+                )
+
+                BubblesCheckBox(
+                    checked = true,
+                    onCheckedChange = {}
+                )
+
+                BubblesCheckBox(
+                    checked = false,
+                    onCheckedChange = {}
+                )
+
+                BubblesCheckBox(
+                    checked = true,
+                    onCheckedChange = {},
+                    enabled = false
+                )
+
+                BubblesCheckBox(
+                    checked = false,
+                    onCheckedChange = {},
+                    enabled = false
+                )
+            }
             Buttons()
 
             var text1 by remember { mutableStateOf("Test text") }

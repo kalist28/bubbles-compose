@@ -38,8 +38,8 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 | Bottom Sheet         |   🕒    | 🕒  |   🕒    | 🕒  |
 | Bottom Sheet (Modal) |   🕒    | 🕒  |   🕒    | 🕒  |
 | Button               |   ✅    | ✅  |   ✅    | ✅  |
-| Checkbox             |   🕒    | 🕒  |   🕒    | 🕒  |
-| Checkbox (TriState)  |   🕒    | 🕒  |   🕒    | 🕒  |
+| Checkbox             |   ✅    | ✅  |   ✅    | ✅  |
+| Checkbox (TriState)  |   ✅    | ✅  |   ✅    | ✅  |
 | Dialog               |   🕒    | 🕒  |   🕒    | 🕒  |
 | Disclosure           |   🕒    | 🕒  |   🕒    | 🕒  |
 | Dropdown Menu        |   🕒    | 🕒  |   🕒    | 🕒  |
