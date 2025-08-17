@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,12 +19,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
-import com.composeunstyled.Icon
 import io.github.kalist28.bubbles.BubblesBorderedTextField
 import io.github.kalist28.bubbles.BubblesButton
 import io.github.kalist28.bubbles.BubblesButtonDefaults
 import io.github.kalist28.bubbles.BubblesButtonSize
 import io.github.kalist28.bubbles.BubblesCheckBox
+import io.github.kalist28.bubbles.BubblesSwitch
 import io.github.kalist28.bubbles.BubblesText
 import io.github.kalist28.bubbles.BubblesTextField
 import io.github.kalist28.bubbles.BubblesTextFieldDefaults
@@ -46,6 +48,16 @@ fun App() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                modifier = Modifier
+            ) {
+
+                BubblesSwitch(true, {})
+                BubblesSwitch(false, {})
+                BubblesSwitch(true, {}, enabled = false)
+                BubblesSwitch(false, {}, enabled = false)
+            }
             Row {
                 var state by remember { mutableStateOf(ToggleableState.On) }
                 BubblesTriStateCheckBox(
