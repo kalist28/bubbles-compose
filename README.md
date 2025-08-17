@@ -35,19 +35,22 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 | Text                 |    ✅    |  ✅  |    ✅    |  ✅  |
 | Text Field           |    ✅    |  ✅  |    ✅    |  ✅  |
 | Toggle Switch        |    ✅    |  ✅  |    ✅    |  ✅  |
-| Bottom Sheet         |   🕒    | 🕒  |   🕒    | 🕒  |
-| Bottom Sheet (Modal) |   🕒    | 🕒  |   🕒    | 🕒  |
 | Button               |    ✅    |  ✅  |    ✅    |  ✅  |
 | Checkbox             |    ✅    |  ✅  |    ✅    |  ✅  |
 | Checkbox (TriState)  |    ✅    |  ✅  |    ✅    |  ✅  |
+| Icon                 |    ✅    |  ✅  |    ✅    |  ✅  |
+| Date picker          |   🕒    | 🕒  |   🕒    | 🕒  |
+| Time picker          |   🕒    | 🕒  |   🕒    | 🕒  |
+| Tip                  |   🕒    | 🕒  |   🕒    | 🕒  |
+| Snackbar             |   🕒    | 🕒  |   🕒    | 🕒  |
 | Dialog               |   🕒    | 🕒  |   🕒    | 🕒  |
 | Disclosure           |   🕒    | 🕒  |   🕒    | 🕒  |
 | Dropdown Menu        |   🕒    | 🕒  |   🕒    | 🕒  |
-| Icon                 |    ✅    |  ✅  |    ✅    |  ✅  |
-| Modal                |   🕒    | 🕒  |   🕒    | 🕒  |
+| Bottom Sheet         |   🕒    | 🕒  |   🕒    | 🕒  |
+| Bottom Sheet (Modal) |   🕒    | 🕒  |   🕒    | 🕒  |
 | Progress Indicator   |   🕒    | 🕒  |   🕒    | 🕒  |
 | Radio Group          |   🕒    | 🕒  |   🕒    | 🕒  |
-| Scroll Area          |   🕒    | 🕒  |   🕒    | 🕒  |
+| ScrollBar            |   🕒    | 🕒  |   🕒    | 🕒  |
 | Separators           |   🕒    | 🕒  |   🕒    | 🕒  |
 | Slider               |   🕒    | 🕒  |   🕒    | 🕒  |
 | Tab Group            |   🕒    | 🕒  |   🕒    | 🕒  |
