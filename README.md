@@ -52,6 +52,6 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 | Radio Button         |    ✅    |  ✅  |    ✅    |  ✅  |
 | Radio Group          |    ✅    |  ✅  |    ✅    |  ✅  |
 | ScrollBar            |   🕒    | 🕒  |   🕒    | 🕒  |
-| Separators           |   🕒    | 🕒  |   🕒    | 🕒  |
+| Separators           |    ✅    |  ✅  |    ✅    |  ✅  |
 | Slider               |   🕒    | 🕒  |   🕒    | 🕒  |
 | Tab Group            |   🕒    | 🕒  |   🕒    | 🕒  |
