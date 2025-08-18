@@ -49,7 +49,8 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 | Bottom Sheet         |   🕒    | 🕒  |   🕒    | 🕒  |
 | Bottom Sheet (Modal) |   🕒    | 🕒  |   🕒    | 🕒  |
 | Progress Indicator   |   🕒    | 🕒  |   🕒    | 🕒  |
-| Radio Group          |   🕒    | 🕒  |   🕒    | 🕒  |
+| Radio Button         |    ✅    |  ✅  |    ✅    |  ✅  |
+| Radio Group          |    ✅    |  ✅  |    ✅    |  ✅  |
 | ScrollBar            |   🕒    | 🕒  |   🕒    | 🕒  |
 | Separators           |   🕒    | 🕒  |   🕒    | 🕒  |
 | Slider               |   🕒    | 🕒  |   🕒    | 🕒  |

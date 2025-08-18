@@ -7,9 +7,9 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconToggleButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,6 +24,8 @@ import io.github.kalist28.bubbles.BubblesButton
 import io.github.kalist28.bubbles.BubblesButtonDefaults
 import io.github.kalist28.bubbles.BubblesButtonSize
 import io.github.kalist28.bubbles.BubblesCheckBox
+import io.github.kalist28.bubbles.BubblesRadioButton
+import io.github.kalist28.bubbles.BubblesRadioButtonsColumn
 import io.github.kalist28.bubbles.BubblesSwitch
 import io.github.kalist28.bubbles.BubblesText
 import io.github.kalist28.bubbles.BubblesTextField
@@ -48,6 +50,36 @@ fun App() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+
+
+            val radioOptions = listOf("Calls", "Missed", "Friends")
+            val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
+            BubblesRadioButtonsColumn(
+                items = radioOptions,
+                selectedPredicate = { it == selectedOption },
+                onItemClick = onOptionSelected,
+                itemContent = { modifier, item ->
+                    Row(
+                        horizontalArrangement = Arrangement.Start,
+                        modifier = modifier.padding(8.dp)
+                    ) {
+                        BubblesRadioButton(
+                            selected = item == selectedOption,
+                            onClick = null
+                        )
+                        BubblesText(text = item)
+                    }
+                }
+            )
+
+
+            Row {
+                BubblesRadioButton(true, {})
+                BubblesRadioButton(false, {})
+                BubblesRadioButton(true, {}, enabled = false)
+                BubblesRadioButton(false, {}, enabled = false)
+            }
+
             Row(
                 horizontalArrangement = Arrangement.Start,
                 modifier = Modifier
