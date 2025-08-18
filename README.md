@@ -54,3 +54,4 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 | Separators           |    ✅    |  ✅  |    ✅    |  ✅  |
 | Slider               |    ✅    |  ✅  |    ✅    |  ✅  |
 | Tab Group            |   🕒    | 🕒  |   🕒    | 🕒  |
+| Segment Tab          |    ✅    |  ✅  |    ✅    |  ✅  |

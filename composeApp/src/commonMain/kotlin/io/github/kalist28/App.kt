@@ -26,6 +26,8 @@ import io.github.kalist28.bubbles.BubblesButtonSize
 import io.github.kalist28.bubbles.BubblesCheckBox
 import io.github.kalist28.bubbles.BubblesRadioButton
 import io.github.kalist28.bubbles.BubblesRadioButtonsColumn
+import io.github.kalist28.bubbles.BubblesSegmentedControl
+import io.github.kalist28.bubbles.ControlTab
 import io.github.kalist28.bubbles.BubblesSlider
 import io.github.kalist28.bubbles.BubblesSliderDefaults
 import io.github.kalist28.bubbles.BubblesSwitch
@@ -52,9 +54,26 @@ fun App() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            var index by remember { mutableStateOf(0) }
+            BubblesSegmentedControl(index) {
+                repeat(5) { i ->
+                    ControlTab({
+                        index = i
+                    }, isSelected = i == index, isEnabled = i % 2 == 0) {
+                        BubblesText("Tab $i")
+                    }
+                }
+            }
+
+
             var sliderValue by remember { mutableStateOf(0.5f) }
-            BubblesSlider(sliderValue, { sliderValue = it}, steps = 20, colors = BubblesSliderDefaults.colors())
-            BubblesSlider(1 - sliderValue, {sliderValue = it }, enabled = false)
+            BubblesSlider(
+                sliderValue,
+                { sliderValue = it },
+                steps = 20,
+                colors = BubblesSliderDefaults.colors()
+            )
+            BubblesSlider(1 - sliderValue, { sliderValue = it }, enabled = false)
 
             val radioOptions = listOf("Calls", "Missed", "Friends")
             val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
