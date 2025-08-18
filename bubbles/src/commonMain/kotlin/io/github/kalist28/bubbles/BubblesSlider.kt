@@ -902,7 +902,7 @@ object BubblesSliderDefaults {
     fun colors(
         thumbColor: Color = BubblesColors.White,
         activeTrackColor: Color = BubblesTheme.colorScheme.accent,
-        activeTickColor: Color = BubblesTheme.colorScheme.separator,
+        activeTickColor: Color = BubblesColors.White.copy(.8f),
         inactiveTrackColor: Color = BubblesTheme.colorScheme.separator,
         inactiveTickColor: Color = activeTickColor,
         disabledThumbColor: Color = thumbColor,

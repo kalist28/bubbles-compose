@@ -24,8 +24,11 @@ import io.github.kalist28.bubbles.BubblesButton
 import io.github.kalist28.bubbles.BubblesButtonDefaults
 import io.github.kalist28.bubbles.BubblesButtonSize
 import io.github.kalist28.bubbles.BubblesCheckBox
+import io.github.kalist28.bubbles.BubblesIcon
+import io.github.kalist28.bubbles.BubblesNavigationBar
 import io.github.kalist28.bubbles.BubblesRadioButton
 import io.github.kalist28.bubbles.BubblesRadioButtonsColumn
+import io.github.kalist28.bubbles.BubblesScaffold
 import io.github.kalist28.bubbles.BubblesSegmentedControl
 import io.github.kalist28.bubbles.ControlTab
 import io.github.kalist28.bubbles.BubblesSlider
@@ -35,7 +38,9 @@ import io.github.kalist28.bubbles.BubblesText
 import io.github.kalist28.bubbles.BubblesTextField
 import io.github.kalist28.bubbles.BubblesTextFieldDefaults
 import io.github.kalist28.bubbles.BubblesTheme
+import io.github.kalist28.bubbles.BubblesTopAppBar
 import io.github.kalist28.bubbles.BubblesTriStateCheckBox
+import io.github.kalist28.bubbles.NavbarItem
 import io.github.kalist28.bubbles.core.LocalContentColor
 import io.github.kalist28.bubbles.core.theme.BubblesColors
 import io.github.kalist28.bubbles.core.theme.BubblesTheme
@@ -44,12 +49,34 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun App() {
-    BubblesTheme {
+fun App() = BubblesTheme {
+    BubblesScaffold(
+        topBar = {
+            BubblesTopAppBar(
+                title = {
+                    BubblesText("Bubbles UI kot")
+                },
+            )
+        },
+        bottomBar = {
+            var selected by remember { mutableStateOf(0) }
+            BubblesNavigationBar {
+                repeat(3) { i ->
+                    NavbarItem(
+                        i == selected,
+                        onClick = { selected = i },
+                        icon = { BubblesIcon(ArrowUpRightCircle, contentDescription = "ArrowUpRightCircle") },
+                        label = { BubblesText("Item $i") }
+                    )
+                }
+            }
+        }
+    ) {
         Column(
             modifier = Modifier
+                .padding(it)
                 .background(BubblesTheme.colorScheme.systemBackground)
-                .safeContentPadding()
+                //.safeContentPadding()
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)

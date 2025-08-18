@@ -89,6 +89,15 @@ kotlin {
             jsMain.get().dependsOn(this)
             wasmJsMain.dependsOn(this)
         }
+
+        val skikoMain by creating {
+            dependsOn(commonMain.get())
+            appleMain.get().dependsOn(this)
+            jvmMain.get().dependsOn(this)
+            macosMain.get().dependsOn(this)
+            jsMain.get().dependsOn(this)
+            wasmJsMain.dependsOn(this)
+        }
     }
 }
 
