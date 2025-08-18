@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 Bubbles Compose project and open source contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package io.github.kalist28.bubbles.core.theme
 
 import androidx.compose.runtime.Composable
@@ -182,7 +198,7 @@ fun darkColorScheme(
 internal object ColorSchemeTokens {
     val lightAccent: Color = BubblesColors.systemBlue(false)
     val lightLabel: Color = Color.Black
-    val lightSecondaryLabel: Color = Color(0x993c3c43) orContrast Color(0xcc3c3c43)
+    val lightSecondaryLabel: Color = Color(0xFF96A6C2) orContrast Color(0xcc3c3c43)
     val lightTertiaryLabel: Color = Color(0x4c3c3c43) orContrast Color(0xb23c3c43)
 
     val lightQuaternaryLabel: Color = Color(0x2d3c3c43) orContrast Color(0x8c3c3c43)
@@ -208,7 +224,7 @@ internal object ColorSchemeTokens {
 
     val darkAccent: Color = BubblesColors.systemBlue(true)
     val darkLabel: Color = Color.White
-    val darkSecondaryLabel: Color = Color(0x99ebebf5) orContrast Color(0xb2ebebf5)
+    val darkSecondaryLabel: Color = Color(0x9996A6C2) orContrast Color(0xb2ebebf5)
     val darkTertiaryLabel: Color = Color(0x4cebebf5) orContrast Color(0x8cebebf5)
     val darkQuaternaryLabel: Color = Color(0x28ebebf5) orContrast Color(0x66ebebf5)
     val darkSystemFill: Color = Color(0x5b787880) orContrast Color(0x70787880)

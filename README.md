@@ -19,7 +19,7 @@ Bubbles forCompose is a Kotlin Multiplatform library for the Compose Multiplatfo
 
 This package is published to Maven Central Repository: [bubbles on Maven Central](https://central.sonatype.com/artifact/io.github.kalist28/bubbles)
 
-Depend on the [latest version](https://github.com/kalist28/compose-cupertino/releases) by declaring this in libs.versions.toml:
+Depend on the [latest version](https://github.com/kalist28/bubbles-compose/releases) by declaring this in libs.versions.toml:
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.kalist28/bubbles)](https://maven-badges.herokuapp.com/maven-central/io.github.kalist28/bubbles)
 ```
@@ -32,22 +32,26 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 
 | Platform             | Android | iOS | desktop | web |
 |----------------------|:-------:|:---:|:-------:|:---:|
-| Text                 |   ✅    | ✅  |   ✅    | ✅  |
-| Text Field           |   🕒    | 🕒  |   🕒    | 🕒  |
-| Toggle Switch        |   🕒    | 🕒  |   🕒    | 🕒  |
-| Bottom Sheet         |   🕒    | 🕒  |   🕒    | 🕒  |
-| Bottom Sheet (Modal) |   🕒    | 🕒  |   🕒    | 🕒  |
-| Button               |   🕒    | 🕒  |   🕒    | 🕒  |
-| Checkbox             |   🕒    | 🕒  |   🕒    | 🕒  |
-| Checkbox (TriState)  |   🕒    | 🕒  |   🕒    | 🕒  |
+| Text                 |    ✅    |  ✅  |    ✅    |  ✅  |
+| Text Field           |    ✅    |  ✅  |    ✅    |  ✅  |
+| Toggle Switch        |    ✅    |  ✅  |    ✅    |  ✅  |
+| Button               |    ✅    |  ✅  |    ✅    |  ✅  |
+| Checkbox             |    ✅    |  ✅  |    ✅    |  ✅  |
+| Checkbox (TriState)  |    ✅    |  ✅  |    ✅    |  ✅  |
+| Icon                 |    ✅    |  ✅  |    ✅    |  ✅  |
+| Date picker          |   🕒    | 🕒  |   🕒    | 🕒  |
+| Time picker          |   🕒    | 🕒  |   🕒    | 🕒  |
+| Tip                  |   🕒    | 🕒  |   🕒    | 🕒  |
+| Snackbar             |   🕒    | 🕒  |   🕒    | 🕒  |
 | Dialog               |   🕒    | 🕒  |   🕒    | 🕒  |
 | Disclosure           |   🕒    | 🕒  |   🕒    | 🕒  |
 | Dropdown Menu        |   🕒    | 🕒  |   🕒    | 🕒  |
-| Icon                 |   🕒    | 🕒  |   🕒    | 🕒  |
-| Modal                |   🕒    | 🕒  |   🕒    | 🕒  |
+| Bottom Sheet         |   🕒    | 🕒  |   🕒    | 🕒  |
+| Bottom Sheet (Modal) |   🕒    | 🕒  |   🕒    | 🕒  |
 | Progress Indicator   |   🕒    | 🕒  |   🕒    | 🕒  |
-| Radio Group          |   🕒    | 🕒  |   🕒    | 🕒  |
-| Scroll Area          |   🕒    | 🕒  |   🕒    | 🕒  |
-| Separators           |   🕒    | 🕒  |   🕒    | 🕒  |
-| Slider               |   🕒    | 🕒  |   🕒    | 🕒  |
+| Radio Button         |    ✅    |  ✅  |    ✅    |  ✅  |
+| Radio Group          |    ✅    |  ✅  |    ✅    |  ✅  |
+| ScrollBar            |   🕒    | 🕒  |   🕒    | 🕒  |
+| Separators           |    ✅    |  ✅  |    ✅    |  ✅  |
+| Slider               |    ✅    |  ✅  |    ✅    |  ✅  |
 | Tab Group            |   🕒    | 🕒  |   🕒    | 🕒  |

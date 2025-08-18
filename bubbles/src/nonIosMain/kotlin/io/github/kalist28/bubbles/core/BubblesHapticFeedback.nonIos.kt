@@ -16,8 +16,10 @@
 
 package io.github.kalist28.bubbles.core
 
-actual val Accessibility.isHighContrastEnabled: Boolean
-    get() = false
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.platform.LocalHapticFeedback
 
-actual val Accessibility.isReduceTransparencyEnabled: Boolean
-    get() = false
+@Composable
+actual fun rememberBubblesHapticFeedback(): HapticFeedback =
+    LocalHapticFeedback.current

@@ -16,8 +16,14 @@
 
 package io.github.kalist28.bubbles.core
 
-actual val Accessibility.isHighContrastEnabled: Boolean
-    get() = false
+import androidx.compose.runtime.Composable
 
-actual val Accessibility.isReduceTransparencyEnabled: Boolean
-    get() = false
+internal typealias ComposableBlock = @Composable () -> Unit
+
+
+internal fun nullableWrapper(
+    block: ComposableBlock?,
+    wrapper: @Composable (ComposableBlock) -> Unit
+) = if (block == null) null else {
+    @Composable { wrapper(block) }
+}
