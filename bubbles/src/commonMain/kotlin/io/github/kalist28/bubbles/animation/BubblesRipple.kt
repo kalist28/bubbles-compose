@@ -11,6 +11,7 @@ import androidx.compose.foundation.IndicationNodeFactory
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Modifier
@@ -27,17 +28,20 @@ import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.node.DelegatableNode
 import androidx.compose.ui.node.DrawModifierNode
 import androidx.compose.ui.unit.Dp
+import io.github.kalist28.bubbles.core.theme.BubblesColors
+import io.github.kalist28.bubbles.core.theme.systemGray4
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlin.math.hypot
 
 @Stable
+@Composable
 fun ripple(
     bounded: Boolean = true,
     shape: Shape = CircleShape,
     radius: Dp = Dp.Unspecified,
-    color: Color = Color.Black.copy(alpha = 0.16f)
+    color: Color = BubblesColors.systemGray4.copy(.5f)
 ): RippleIndication = RippleIndication(
     color = color,
     bounded = bounded,
