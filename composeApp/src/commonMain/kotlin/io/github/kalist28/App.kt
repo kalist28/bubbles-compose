@@ -26,6 +26,8 @@ import io.github.kalist28.bubbles.BubblesButtonSize
 import io.github.kalist28.bubbles.BubblesCheckBox
 import io.github.kalist28.bubbles.BubblesRadioButton
 import io.github.kalist28.bubbles.BubblesRadioButtonsColumn
+import io.github.kalist28.bubbles.BubblesSlider
+import io.github.kalist28.bubbles.BubblesSliderDefaults
 import io.github.kalist28.bubbles.BubblesSwitch
 import io.github.kalist28.bubbles.BubblesText
 import io.github.kalist28.bubbles.BubblesTextField
@@ -50,7 +52,9 @@ fun App() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-
+            var sliderValue by remember { mutableStateOf(0.5f) }
+            BubblesSlider(sliderValue, { sliderValue = it}, steps = 20, colors = BubblesSliderDefaults.colors())
+            BubblesSlider(1 - sliderValue, {sliderValue = it }, enabled = false)
 
             val radioOptions = listOf("Calls", "Missed", "Friends")
             val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
