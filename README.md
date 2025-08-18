@@ -40,6 +40,7 @@ bubbles = { group = "io.github.kalist28", name = "bubbles", version.ref = "bubbl
 | Date picker          |   🕒    | 🕒  |   🕒    | 🕒  |
 | Time picker          |   🕒    | 🕒  |   🕒    | 🕒  |
 | Tip                  |   🕒    | 🕒  |   🕒    | 🕒  |
+| Scaffold             |   🕒    | 🕒  |   🕒    | 🕒  |
 | Snackbar             |   🕒    | 🕒  |   🕒    | 🕒  |
 | Dialog               |   🕒    | 🕒  |   🕒    | 🕒  |
 | Disclosure           |   🕒    | 🕒  |   🕒    | 🕒  |
