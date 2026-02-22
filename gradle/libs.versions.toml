@@ -12,6 +12,7 @@ androidx-testExt = "1.2.1"
 composeHotReload = "1.0.0-beta04"
 composeMultiplatform = "1.8.2"
 composables = "1.40.0"
+composeunstyledPrimitives = "1.49.6"
 junit = "4.13.2"
 kotlin = "2.2.0"
 kotlinx-coroutines = "1.10.2"
@@ -22,6 +23,7 @@ vanniktech-mavenPublish="0.30.0"
 
 [libraries]
 composables = { module = "com.composables:core", version.ref = "composables" }
+composeunstyled-primitives = { module = "com.composables:composeunstyled-primitives", version.ref = "composeunstyledPrimitives" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { module = "junit:junit", version.ref = "junit" }

@@ -53,6 +53,11 @@ fun MainScreen(
             "Navigation",
             "Tab rows and segmented controls",
             Screen.NavigationComponents
+        ),
+        CategoryItem(
+            "Bottom Sheet",
+            "",
+            Screen.BottomSheet
         )
     )
 

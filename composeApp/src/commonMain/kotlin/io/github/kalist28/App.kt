@@ -14,6 +14,7 @@ import io.github.kalist28.bubbles.BubblesText
 import io.github.kalist28.bubbles.BubblesTheme as BubblesThemeProvider
 import io.github.kalist28.bubbles.BubblesTopAppBar
 import io.github.kalist28.bubbles.core.theme.BubblesTheme
+import io.github.kalist28.screens.BottomSheetScreen
 import io.github.kalist28.screens.ButtonsScreen
 import io.github.kalist28.screens.InputsScreen
 import io.github.kalist28.screens.MainScreen
@@ -29,6 +30,7 @@ sealed class Screen {
     object Selection : Screen()
     object Typography : Screen()
     object NavigationComponents : Screen()
+    object BottomSheet : Screen()
 }
 
 @Composable
@@ -50,6 +52,7 @@ fun App() {
                                 Screen.Selection -> "Selection Controls"
                                 Screen.Typography -> "Typography & Icons"
                                 Screen.NavigationComponents -> "Navigation"
+                                Screen.BottomSheet -> "Bottom Sheet"
                             }
                         )
                     },
@@ -82,6 +85,7 @@ fun App() {
                 Screen.Selection -> SelectionScreen(paddingValues)
                 Screen.Typography -> TypographyScreen(paddingValues)
                 Screen.NavigationComponents -> NavigationScreen(paddingValues)
+                Screen.BottomSheet -> BottomSheetScreen(paddingValues)
             }
         }
     }
