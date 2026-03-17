@@ -56,8 +56,13 @@ fun MainScreen(
         ),
         CategoryItem(
             "Bottom Sheet",
-            "",
+            "iOS-inspired bottom sheet with drag indication",
             Screen.BottomSheet
+        ),
+        CategoryItem(
+            "Modal Bottom Sheet",
+            "Modal variant with dimmed background and full attention focus",
+            Screen.ModalBottomSheet
         )
     )
 

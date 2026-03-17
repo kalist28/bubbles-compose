@@ -18,6 +18,7 @@ import io.github.kalist28.screens.BottomSheetScreen
 import io.github.kalist28.screens.ButtonsScreen
 import io.github.kalist28.screens.InputsScreen
 import io.github.kalist28.screens.MainScreen
+import io.github.kalist28.screens.ModalBottomSheetScreen
 import io.github.kalist28.screens.NavigationScreen
 import io.github.kalist28.screens.SelectionScreen
 import io.github.kalist28.screens.TypographyScreen
@@ -31,6 +32,7 @@ sealed class Screen {
     object Typography : Screen()
     object NavigationComponents : Screen()
     object BottomSheet : Screen()
+    object ModalBottomSheet : Screen()
 }
 
 @Composable
@@ -53,6 +55,7 @@ fun App() {
                                 Screen.Typography -> "Typography & Icons"
                                 Screen.NavigationComponents -> "Navigation"
                                 Screen.BottomSheet -> "Bottom Sheet"
+                                Screen.ModalBottomSheet -> "Modal Bottom Sheet"
                             }
                         )
                     },
@@ -86,6 +89,7 @@ fun App() {
                 Screen.Typography -> TypographyScreen(paddingValues)
                 Screen.NavigationComponents -> NavigationScreen(paddingValues)
                 Screen.BottomSheet -> BottomSheetScreen(paddingValues)
+                Screen.ModalBottomSheet -> ModalBottomSheetScreen(paddingValues)
             }
         }
     }
